@@ -39,8 +39,13 @@ namespace VirtualDj.Controllers
         [HttpPost("AddCharacter")]
         public async Task<ActionResult<ServiceResponse<List<GetPjesmaDto>>>> AddPjesma(AddPjesmaDto newpjesma)
         {
-
-            return Ok(await _pjesmaService.AddPjesma(newpjesma));
+            var odgovor = (await _pjesmaService.AddPjesma(newpjesma));
+            if (odgovor == null)
+            {
+                return NotFound(odgovor);
+            }
+            else
+                return Ok(odgovor);
         }
 
         [HttpPut("UpdatePjesma")]

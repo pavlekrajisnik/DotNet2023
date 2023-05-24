@@ -32,6 +32,8 @@ namespace VirtualDj.Services
             return Service_Response;
         }
 
+
+        
         public async Task<ServiceResponse<GetPjesmaDto>> GetById(int id)
         {
             var Service_Response = new ServiceResponse<GetPjesmaDto>();
@@ -48,16 +50,6 @@ namespace VirtualDj.Services
             return Service_Response;
         }
 
-        public async Task<ServiceResponse<List<GetPjesmaDto>>> AddPjesma(AddPjesmaDto newpjesma)
-        {
-            var Service_Response = new ServiceResponse<List<GetPjesmaDto>>();
-            var pjesma = _mapper.Map<Pjesma>(newpjesma);
-            _context.Pjesme.Add(pjesma);
-            await _context.SaveChangesAsync();
-            Service_Response.Data = await _context.Pjesme.Select(c => _mapper.Map<GetPjesmaDto>(c)).ToListAsync();
-            return Service_Response;
-
-        }
 
         public async Task<ServiceResponse<GetPjesmaDto>> UpdatePjesma(UpdatePjesmaDto updatedPjesma)
         {

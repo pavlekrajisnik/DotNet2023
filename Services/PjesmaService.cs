@@ -38,11 +38,15 @@ namespace VirtualDj.Services
             return Service_Response;
         }
 
-        public async Task<ServiceResponse<GetPjesmaDto>> GetByName(string name)
-        {
+        public async Task<ServiceResponse<GetPjesmaDto>> GetByName(string name){
             var Service_Response = new ServiceResponse<GetPjesmaDto>();
             var dbPjesma =  await _context.Pjesme.FirstOrDefaultAsync(c => c.NazivPjesme == name);
-            Service_Response.Data = _mapper.Map<GetPjesmaDto>(dbPjesma);
+            if (dbPjesma == null)
+            {
+                throw new Exception($"Ne postoji pjesma sa imenom '{name}'.");
+            }
+            else
+                Service_Response.Data = _mapper.Map<GetPjesmaDto>(dbPjesma);
             return Service_Response;
         }
 

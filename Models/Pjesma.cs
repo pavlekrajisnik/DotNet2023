@@ -7,6 +7,7 @@
         public string Izvodjac { get; set; } = string.Empty;
         public int Trending { get; set; }
         public Zanr Tip { get; set; }
+        public User? User { get; set; }
 
     }
 }

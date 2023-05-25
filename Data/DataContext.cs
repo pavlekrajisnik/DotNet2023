@@ -11,5 +11,6 @@ namespace VirtualDj.Data
         }
 
         public DbSet<Pjesma> Pjesme => Set<Pjesma>();
+        public DbSet<User> Users => Set<User>();
     }
 }
